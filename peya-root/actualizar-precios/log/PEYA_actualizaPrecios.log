@@ -1,0 +1,47 @@
+[INFO  2023-01-23 17:12:18,200] {main} [module.PeyaActualizaPrecios-56] - [ 23/01/23-17:12:18.194 ] PeyaController - 1.0.0 (28-12-2022)  is running a desarrollo
+[INFO  2023-01-23 17:12:20,641] {main} [module.PeyaActualizaPrecios-88] - ProductosFasa {
+	"Local": [
+	{
+	"NumeroLocal": 1,
+	"Stock": [
+	{
+	"Codigo": "1234",
+	"Cantidad": 5
+},
+	{
+	"Codigo": "7678",
+	"Cantidad": 7
+}
+]
+},
+	{
+	"NumeroLocal": 2,
+	"Stock": [
+	{
+	"Codigo": "1234",
+	"Cantidad": 5
+},
+	{
+	"Codigo": "7678",
+	"Cantidad": 7
+}
+]
+}
+],
+	"IntegrationCode": "INTEGRATION_CODE",
+	"IntegrationName": "INTEGRATION_NAME",
+	"Price": 1500.0,
+	"Description": "DESCRIPION",
+	"Image": "IMAGE",
+	"Nombre": "NOMBRE",
+	"Habilitado": true,
+	"RequiresAgeCheck": false,
+	"MeasurementUnit": "MEASUREMENT_UNIT",
+	"ContentQuantity": 3.0,
+	"PrescriptionBehaviour": "PRESCRIPTION_BEHAVIOUR",
+	"SectionIntegrationCode": "SECTION_INTEGRATION_CODE",
+	"SectionName": "SECTION_NAME",
+	"VendorId": "VENDOR_ID",
+	"Tipo": 1,
+	"Gtin": "gtin"
+}

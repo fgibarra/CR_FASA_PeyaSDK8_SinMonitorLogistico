@@ -1,0 +1,65 @@
+package module.integracion.utils;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class JsonUtilities {
+
+	private static JsonUtilities instance;
+	
+	public static JsonUtilities getInstance() {
+		if (instance == null)
+			instance = new JsonUtilities();
+		return instance;
+	}
+	
+	public String toJsonString(Class<?> clazz, Object data) {
+		StringBuffer sb = new StringBuffer(String.format("%s {\n", clazz.getSimpleName()));
+		
+		Method[] methods = clazz.getMethods();
+		for (Method met : methods) {
+			String name = met.getName();
+			int parametersCount = met.getParameterCount();
+			if (name.startsWith("get") && parametersCount == 0) {
+				Class<?> returnType = met.getReturnType();
+				Object valor = null;
+				try {
+					valor = met.invoke(data, (Object[])null);
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					e.printStackTrace();
+				}
+				if (valor != null) {
+					if (returnType.isArray()) {
+						Class<?> arrayType = returnType.getComponentType();
+						
+					} else {
+						if (returnType == String.class) {
+							sb.append(String.format("\t\"%s\": \"%s\",\n", name.substring(3), (String)valor));
+						} else if (
+							returnType == Integer.class || 
+							returnType == Long.class || 
+							returnType == Float.class || 
+							returnType == Short.class || 
+							returnType == Double.class ||
+							returnType == Boolean.class)  {
+							
+							sb.append(String.format("\t\"%s\": %s,\n", name.substring(3), valor.toString()));
+						//} else if (returnType == Boolean.class) {
+							
+						} else {
+							// una clase
+							sb.append(String.format("\"%s\": \"%s\",\n", name.substring(3), toJsonString(returnType, valor)));
+						}
+					}
+				}
+			}
+		}
+		int ultimaComa = sb.lastIndexOf(",");
+		if (ultimaComa > 0) {
+			sb.setLength(ultimaComa);
+		}
+			
+		sb.append("\n}");
+		return sb.toString();
+	}
+}

@@ -1,0 +1,53 @@
+package module.integracion.utils;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class JsonUtilities {
+
+	private static JsonUtilities instance;
+	
+	public static JsonUtilities getInstance() {
+		if (instance == null)
+			instance = new JsonUtilities();
+		return instance;
+	}
+	
+	public String toJsonString(Class<?> clazz, Object data) {
+		StringBuffer sb = new StringBuffer('{');
+		
+		Method[] methods = clazz.getMethods();
+		for (Method met : methods) {
+			String name = met.getName();
+			int parametersCount = met.getParameterCount();
+			if (name.startsWith("get") && parametersCount == 0) {
+				Class<?> returnType = met.getReturnType();
+				Object valor = null;
+				try {
+					valor = met.invoke(data, (Object[])null);
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				if (returnType == String.class) {
+					sb.append(String.format("\"%s\": \"%s\",", name.substring(3), (String)valor));
+				} else if (
+					returnType == Integer.class || 
+					returnType == Long.class || 
+					returnType == Float.class || 
+					returnType == Short.class || 
+					returnType == Double.class )  {
+					
+					sb.append(String.format("\"%s\": %s,", name.substring(3), valor.toString()));
+					
+				} else {
+					// una clase
+					sb.append(String.format("\"%s\": \"%s\",", name.substring(3), toJsonString(returnType, valor)));
+				}
+			}
+		}
+		sb.append('}');
+		return sb.toString();
+	}
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.pedidosya.reception.sdk.models.Detail"/>
+    <fullyQualifiedTypeName name="com.pedidosya.reception.sdk.clients.ProductsClient"/>
+    <fullyQualifiedTypeName name="com.pedidosya.reception.sdk.models.Product"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
+    <fullyQualifiedTypeName name="org.apache.log4j.PropertyConfigurator"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="com.pedidosya.reception.sdk.ApiClient"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="module.integracion.bd.PoolManager"/>
+    <fullyQualifiedTypeName name="module.integracion.threads.ProcesaMantencion"/>
+    <fullyQualifiedTypeName name="java.util.Vector"/>
+    <fullyQualifiedTypeName name="module.integracion.MantenedorPrecios"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.CallableStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Properties"/>
+    <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
+    <fullyQualifiedTypeName name="module.Requester"/>
+    <fullyQualifiedTypeName name="cl.ahumada.esb.utils.json.JSonUtilities"/>
+</qualifiedTypeNameHistroy>

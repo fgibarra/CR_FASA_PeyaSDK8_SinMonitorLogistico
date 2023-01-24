@@ -1,0 +1,126 @@
+package module.integracion.dto;
+
+import java.io.Serializable;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import cl.ahumada.esb.utils.json.JSonUtilities;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProductosFasa implements Serializable {
+
+	/**
+	 * 
+	 */
+	@JsonIgnore
+	private static final long serialVersionUID = -4712068611942823653L;
+	@JsonProperty("INTEGRATION_CODE")
+	private String integrationCode;
+	@JsonProperty("INTEGRATION_NAME")
+	private String integrationName;
+	@JsonProperty("PRICE")
+	private String price;
+	@JsonProperty("DESCRIPION")
+	private String description;
+	@JsonProperty("IMAGE")
+	private String image;
+	@JsonProperty("NOMBRE")
+	private String nombre;
+	@JsonProperty("HABILITADO")
+	private String habilitado;
+	@JsonProperty("REQUIRES_AGE_CHECK")
+	private String requiresAgeCheck;
+	@JsonProperty("MEASUREMENT_UNIT")
+	private String measurementUnit;
+	@JsonProperty("CONTENT_QUANTITY")
+	private String contentQuantity;
+	@JsonProperty("PRESCRIPTION_BEHAVIOUR")
+	private String prescriptionBehaviour;
+	@JsonProperty("SECTION_INTEGRATION_CODE")
+	private String sectionIntegrationCode;
+	@JsonProperty("SECTION_NAME")
+	private String sectionName;
+	@JsonProperty("VENDOR_ID")
+	private String vendorId;
+	@JsonProperty("TIPO")
+	private String tipo;		// 0 - MODIFICAR / 1 - NUEVO / 2: ELIMINAR
+	
+	public ProductosFasa(List<Object> fila) {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	@JsonIgnore
+	public String toString() {
+		try {
+			return JSonUtilities.getInstance().java2json(this);
+		} catch (Exception e) {
+			return String.format("No pudo serializar %s",this.getClass().getSimpleName());
+		}
+	}
+
+	public String getIntegrationCode() {
+		return integrationCode;
+	}
+
+	public String getIntegrationName() {
+		return integrationName;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getHabilitado() {
+		return habilitado;
+	}
+
+	public String getRequiresAgeCheck() {
+		return requiresAgeCheck;
+	}
+
+	public String getMeasurementUnit() {
+		return measurementUnit;
+	}
+
+	public String getContentQuantity() {
+		return contentQuantity;
+	}
+
+	public String getPrescriptionBehaviour() {
+		return prescriptionBehaviour;
+	}
+
+	public String getSectionIntegrationCode() {
+		return sectionIntegrationCode;
+	}
+
+	public String getSectionName() {
+		return sectionName;
+	}
+
+	public String getVendorId() {
+		return vendorId;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+}

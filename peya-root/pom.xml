@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>fasa.peya</groupId>
+  <artifactId>peya-root</artifactId>
+  <version>1.8</version>
+  <packaging>pom</packaging>
+  <name>ServicioPeya</name>
+  <description>Servicio PedidosYA</description>
+	<repositories>
+   <repository>
+            <!--  id>release</id -->
+            <id>librerias-pedidosya</id>
+            <name>Pedidos Ya</name>
+            <url>https://pedidosya.jfrog.io/artifactory/partner-integrations-maven-prod-local/</url>
+        </repository>
+	</repositories>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.maven-bundle-plugin>3.2.0</version.maven-bundle-plugin>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+	<jackson.version>2.11.0</jackson.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+	<dependency>
+		<groupId>com.pedidosya.partners.sdk</groupId>
+		<artifactId>reception-sdk</artifactId>
+		<version>1.8.2</version>
+	</dependency>
+		<dependency>
+			<groupId>fasaESB</groupId>
+			<artifactId>bibliotecaPedidosYa</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+  </dependencies>
+  <modules>
+  	<module>request-orders</module>
+  	<module>mantenedor-stock</module>
+  	<module>actualizar-precios</module>
+  </modules>
+</project>

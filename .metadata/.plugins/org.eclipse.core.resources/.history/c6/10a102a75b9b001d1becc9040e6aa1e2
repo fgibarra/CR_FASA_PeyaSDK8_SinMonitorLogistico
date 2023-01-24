@@ -1,0 +1,21 @@
+package module.integracion.dto;
+
+import java.io.Serializable;
+
+public class Stock implements Serializable {
+
+	String codigo;
+	Long cantidad;
+	public Stock(String codigo, Long cantidad) {
+		super();
+		this.codigo = codigo;
+		this.cantidad = cantidad;
+	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public Long getCantidad() {
+		return cantidad;
+	}
+	
+}

@@ -1,0 +1,26 @@
+package module.integracion.dto;
+
+import java.io.Serializable;
+
+public class Local implements Serializable {
+	Integer numeroLocal;
+	Stock[] stock;
+	
+	public Local(Integer numeroLocal) {
+		this.numeroLocal = numeroLocal;
+		
+		stock = new Stock[2];
+		stock[0] = new Stock("1234", 5l);
+		stock[1] = new Stock("7678", 7l);
+		
+	}
+
+	public Integer getNumeroLocal() {
+		return numeroLocal;
+	}
+
+	public Stock[] getStock() {
+		return stock;
+	}
+	
+}
