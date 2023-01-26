@@ -24,13 +24,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="org.actualizar.precios"/>
+			<item value="org.status.order"/>
 		</list>
 		<list key="groupId">
 			<item value="fasa.peya"/>
 		</list>
 		<list key="artifactId">
-			<item value="actualizar-precios"/>
+			<item value="status-order"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -49,14 +49,16 @@
 			<item value="fasa.peya"/>
 		</list>
 		<list key="name">
+			<item value="Peya Order Status"/>
 			<item value="ActualizarPrecios"/>
 			<item value="Peya Stock"/>
 			<item value="PeyaOrderRequester"/>
 			<item value="ServicioPeya"/>
 		</list>
 		<list key="artifactId">
-			<item value="actualizar-precios"/>
+			<item value="status-order"/>
 			<item value="peya-root"/>
+			<item value="actualizar-precios"/>
 			<item value="mantenedor-stock"/>
 			<item value="request-orders"/>
 		</list>
@@ -78,6 +80,7 @@
 	</section>
 	<section name="MavenModuleWizardParentPage">
 		<list key="moduleName">
+			<item value="status-order"/>
 			<item value="actualizar-precios"/>
 			<item value="mantenedor-stock"/>
 			<item value="request-orders"/>

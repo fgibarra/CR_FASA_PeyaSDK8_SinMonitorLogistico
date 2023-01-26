@@ -24,5 +24,7 @@
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
     <fullyQualifiedTypeName name="module.Requester"/>
+    <fullyQualifiedTypeName name="module.integracion.utils.JsonUtilities"/>
     <fullyQualifiedTypeName name="cl.ahumada.esb.utils.json.JSonUtilities"/>
+    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
 </qualifiedTypeNameHistroy>

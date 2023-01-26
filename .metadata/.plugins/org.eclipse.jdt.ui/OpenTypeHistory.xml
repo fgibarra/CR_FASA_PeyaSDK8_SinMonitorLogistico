@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-    <typeInfo handle="=actualizar-precios/\/home\/apps\/java\/jdk-15.0.1\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/15\/docs\/api\/=/&lt;java.lang(Exception.class[Exception" modifiers="33" timestamp="1620328926152"/>
-    <typeInfo handle="=actualizar-precios/\/home\/apps\/java\/jdk-15.0.1\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/15\/docs\/api\/=/&lt;java.lang(Thread.class[Thread" modifiers="33" timestamp="1620328926152"/>
-    <typeInfo handle="=actualizar-precios/\/home\/apps\/java\/jdk-15.0.1\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/15\/docs\/api\/=/&lt;java.io(Serializable.class[Serializable" modifiers="1537" timestamp="1620328926152"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

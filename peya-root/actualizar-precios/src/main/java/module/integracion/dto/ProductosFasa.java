@@ -56,21 +56,25 @@ public class ProductosFasa implements Serializable {
 	
 	public ProductosFasa(List<Object> fila) {
 		this.gtin = (String) fila.get(0);
-		this.integrationCode = (String) fila.get(1);
+		this.integrationCode = ((java.math.BigDecimal) fila.get(1)).toPlainString();
 		this.integrationName = (String) fila.get(2);
-		this.price = (Double) fila.get(3);
+		this.price = ((java.math.BigDecimal) fila.get(3)).doubleValue();
 		this.description = (String) fila.get(4);
 		this.image = (String) fila.get(5);
 		this.nombre = (String) fila.get(6);
-		this.habilitado = (Boolean) fila.get(7);
-		this.requiresAgeCheck = (Boolean) fila.get(8);
+		String valor = (String)fila.get(7);
+		if (valor != null)
+			this.habilitado = Boolean.valueOf(valor);
+		valor = (String) fila.get(8);
+		if (valor != null)
+			this.requiresAgeCheck = Boolean.valueOf(valor);
 		this.measurementUnit = (String) fila.get(9);
 		this.contentQuantity = (Double) fila.get(10);
 		this.prescriptionBehaviour = (String) fila.get(11);
 		this.sectionIntegrationCode = (String) fila.get(12);
 		this.sectionName = (String) fila.get(13);
-		this.vendorId = (String) fila.get(14);
-		this.tipo = (Integer) fila.get(15);
+		this.vendorId = ((java.math.BigDecimal) fila.get(14)).toPlainString();
+		this.tipo = ((java.math.BigDecimal) fila.get(15)).intValue();
 	}
 
 	@JsonIgnore

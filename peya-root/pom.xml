@@ -44,5 +44,6 @@
   	<module>request-orders</module>
   	<module>mantenedor-stock</module>
   	<module>actualizar-precios</module>
+  	<module>status-order</module>
   </modules>
 </project>
