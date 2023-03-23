@@ -135,9 +135,12 @@ public class MantenedorStock extends Thread {
 	}
 
 	private void dumpEntrada(Items[] deshabilitar, String operacion) {
-		for (Items item : deshabilitar) {
-			logger.info(String.format("%s: local:%s sku:%s", operacion, item.getLocal(), item.getSku()));
-		}
+		if (deshabilitar != null && deshabilitar.length > 0)
+			for (Items item : deshabilitar) {
+				logger.info(String.format("%s: local:%s sku:%s", operacion, item.getLocal(), item.getSku()));
+			}
+		else
+			logger.info(String.format("No vienen items para operacion %s", operacion));
 	}
 
 

@@ -1,7 +1,0 @@
-package module.integracion.dto;
-
-import java.io.Serializable;
-
-public class Local implements Serializable {
-
-}

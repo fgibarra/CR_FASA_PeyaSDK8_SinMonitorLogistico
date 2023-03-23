@@ -45,5 +45,6 @@
   	<module>mantenedor-stock</module>
   	<module>actualizar-precios</module>
   	<module>status-order</module>
+  	<module>heartbeat</module>
   </modules>
 </project>

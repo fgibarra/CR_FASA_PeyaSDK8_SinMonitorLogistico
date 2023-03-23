@@ -1,6 +1,10 @@
 package module;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -17,7 +21,8 @@ import module.integracion.utils.JsonUtilities;
 
 public class PeyaActualizaPrecios {
 
-	private static final String version = "1.0.0 (28-12-2022)";
+	private static final String version = "1.0.1 (08-03-2023)";
+    private static String properyFileName = "integracion.properties";
 	private Properties integracionProps = null;
 	private ApiClient apiClient = null;
 	private String idServidor = null;
@@ -42,28 +47,33 @@ public class PeyaActualizaPrecios {
 					.getResourceAsStream("actualizaPrecios_log4j.properties"));
 			PropertyConfigurator.configure(properties);
 
-			this.integracionProps = new Properties();
-			try (final java.io.InputStream stream = PeyaActualizaPrecios.class.getClassLoader()
-					.getResourceAsStream("integracion.properties")) {
-				if (stream == null)
-					throw new RuntimeException("stream es nulo");
-				integracionProps.load(stream);
-			}
+	        integracionProps = initFromProperties(properyFileName);
+	        if (integracionProps == null) {
+				this.integracionProps = new Properties();
+				try (final java.io.InputStream stream = PeyaActualizaPrecios.class.getClassLoader()
+						.getResourceAsStream("integracion.properties")) {
+					if (stream == null)
+						throw new RuntimeException("stream es nulo");
+					integracionProps.load(stream);
+				}
+	        }
 			String propAmbiente = System.getProperty("peya.actualizaPrecios.ambiente");
 			if (propAmbiente == null)
 				propAmbiente = integracionProps.getProperty("peya.actualizaPrecios.ambiente");
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy-HH:mm:ss.SSS");
-			logger.info(String.format("[ %s ] PeyaController - %s  is running a %s", sdf.format(new Date()), version,
-					propAmbiente));
-			Token token = new Token(integracionProps);
-//			this.apiClient = new ApiClient(token.getCentralizedConnection(propAmbiente));
-
 			this.idServidor = System.getProperty("peya.actualizaPrecios.idServidor");
 			if (idServidor == null)
 				idServidor = integracionProps.getProperty("peya.actualizaPrecios.idServidor");
 			this.numThreads = integracionProps.getProperty("peya.actualizaPrecios.numThreads");
 			if (numThreads == null)
 				numThreads = integracionProps.getProperty("peya.actualizaPrecios.numThreads");
+
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy-HH:mm:ss.SSS");
+	        logger.info(String.format("[ %s ] PeyaActualizaPrecios - %s  is running a %s - Propiedades definidas en: %s\n%s\n",
+	        		sdf.format(new Date()), version, propAmbiente, properyFileName, integracionProps));
+
+	        Token token = new Token(integracionProps);
+//			this.apiClient = new ApiClient(token.getCentralizedConnection(propAmbiente));
+
 		} catch (IOException e) {
 			System.out.println("No pudo leer archivos de propiedades");
 			e.printStackTrace();
@@ -76,6 +86,7 @@ public class PeyaActualizaPrecios {
 		MantenedorPrecios mantenedor = null;
 		
 		try {
+			/*
 			Object valores[] = {"gtin","INTEGRATION_CODE" ,"INTEGRATION_NAME",
 					Double.valueOf(1500), "DESCRIPION", "IMAGE", "NOMBRE", Boolean.TRUE, Boolean.FALSE,
 					"MEASUREMENT_UNIT", Double.valueOf(3), "PRESCRIPTION_BEHAVIOUR", 
@@ -86,7 +97,8 @@ public class PeyaActualizaPrecios {
 			JsonUtilities util = JsonUtilities.getInstance();
 			String json = util.toJsonString(ProductosFasa.class, pf);
 			logger.info(json);
-			//mantenedor = new MantenedorPrecios(obj.getApiClient(), obj.getIdServidor(), obj.getNumThreads(), getIntegracionProps());
+			*/
+			mantenedor = new MantenedorPrecios(obj.getApiClient(), obj.getIdServidor(), obj.getNumThreads(), getIntegracionProps());
 		} catch (Exception e) {
 			logger.error("Termino con error de inicializacion", e);
 			System.exit(1);
@@ -96,6 +108,42 @@ public class PeyaActualizaPrecios {
 		
 		System.exit(0);
 	}
+
+
+    protected static Properties initFromProperties(String propertiesFileName) {
+        Properties idProps = new Properties();
+
+        logger.debug(String.format("initFromProperties: busca properties en %s/%s", System.getProperty("user.dir"),propertiesFileName));
+        File fileProperties = new File(String.format("%s/%s", System.getProperty("user.dir"),propertiesFileName));
+        if (!fileProperties.exists()) {
+            fileProperties =  new File(String.format("%s/src/main/%s", System.getProperty("user.dir"),propertiesFileName));
+        }
+        logger.debug(String.format("fileProperties= %s existe %b", fileProperties.getAbsolutePath(), fileProperties.exists()));
+
+        if (fileProperties.exists()) {
+            try {
+                InputStream is = null;
+                try {
+                    is = new FileInputStream(fileProperties);
+                } catch (FileNotFoundException e) {
+                    is = null;
+                }
+                if (is != null) {
+
+                    try {
+                        idProps.load(is);
+                    } catch (Exception e) {
+                        logger.error("cargando properties", e);
+                    }
+                }
+            } catch (Exception e) {
+                logger.error(String.format("initFromProperties: %s", e.getMessage()), e);
+            }
+        }
+
+
+        return idProps;
+    }
 
 	public static Properties getIntegracionProps() {
 		return getInstance().integracionProps;

@@ -18,6 +18,7 @@ import cl.ahumada.esb.dto.pharol.consultastock.ConsultaStockRequest;
 import cl.ahumada.esb.dto.pharol.json.Local;
 import cl.ahumada.esb.dto.pharolV4.pedidos.PedidosRequest;
 import cl.ahumada.esb.utils.json.JSonUtilities;
+import module.PeyaStock;
 
 public class ServiciosdeBus {
 
@@ -37,12 +38,7 @@ public class ServiciosdeBus {
 	public ServiciosdeBus(ApiClient apiClient) throws IOException {
 		super();
 		this.apiClient = apiClient;
-		integracionProps = new Properties();
-		try (final java.io.InputStream stream =
-		           this.getClass().getClassLoader().getResourceAsStream("integracion.properties")){
-					if (stream == null) throw new RuntimeException("stream es nulo");
-					integracionProps.load(stream);
-				}
+		integracionProps = PeyaStock.getIntegracionProps();
 		invocaESB = new InvocaESB(integracionProps);
 	}
 
