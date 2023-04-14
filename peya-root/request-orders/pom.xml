@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fasaESB</groupId>
 	<artifactId>PedidosYaRequester</artifactId>
-	<version>1.2.19-sdk8</version>
+	<version>1.2.27-sdk8</version>
 	<repositories>
 		<repository>
 			<!-- id>release</id -->

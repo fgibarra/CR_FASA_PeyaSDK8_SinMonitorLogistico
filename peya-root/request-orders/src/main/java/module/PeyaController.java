@@ -23,12 +23,12 @@ import com.pedidosya.reception.sdk.exceptions.ApiException;
  */
 public class PeyaController {
 
-    private static final String version = "1.2.20-sdk8 (08-03-2023)";
+    private static final String version = "1.2.27-sdk8 (13-04-2023)";
     protected static String log4jConfigFile = "pedidosYa_log4j.properties";
     private static String properyFileName = "integracion.properties";
     private static Logger logger = Logger.getLogger(PeyaController.class);
     private static Properties integracionProps;
-    
+
     public static void main(String[] args) throws ApiException, IOException {
     	Properties properties = new Properties();
     	properties.load(PeyaController.class.getClassLoader().getResourceAsStream("pedidosYa_log4j.properties"));
@@ -60,22 +60,38 @@ public class PeyaController {
     	
         logger.info(String.format("[ %s ] PeyaController - %s  is running a %s - Propiedades definidas en: %s\n%s\n",
         		sdf.format(new Date()), version, propAmbiente, properyFileName, integracionProps));
+        //////////////////////////////////////////////////////////////////////
+
         Token token = new Token();
-
         ApiClient apiClient = new ApiClient(token.getCentralizedConnection(propAmbiente));
-        //////////////////////////////////////////////////////////////////////
-        /*
-        PartnerEvents partnerEvents = new PartnerEvents(apiClient);
-        partnerEvents.getInitialization();
-        partnerEvents.start();
-        */
-        //////////////////////////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////////////////////////
-
         Requester requester = new Requester (apiClient);
-        logger.info("PeyaController: comienza proceso de ordenes");
         requester.getOrders();
+        
+        /*
+         * no funciona
+         *
+        Requester requester = null;
+		Long waitTime = Long.valueOf(integracionProps.getProperty("peya.requester.sleepTimeAfterMalformedToken", "60000"));
+        do {
+
+            ApiClient apiClient = new ApiClient(token.getCentralizedConnection(propAmbiente));
+	        try {
+				requester = new Requester (apiClient);
+				logger.info(String.format("PeyaController: comienza proceso de ordenes a las %s",
+						sdf.format(new Date())));
+				Thread requesterThread = new Thread(requester, "T1");
+				requesterThread.start();
+				do {
+					Thread.sleep(waitTime);
+				} while (!requester.isDebeParar());
+				
+				logger.info("Se detecto que se termino ejecucion de thread requesterThread");
+			} catch (Exception e) {
+				String msg = e.getMessage();
+				logger.error(msg, e);
+			}
+        } while (true);
+        */
     }
 
     protected static Properties initFromProperties(String propertiesFileName) {

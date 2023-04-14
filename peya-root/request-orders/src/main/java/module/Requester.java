@@ -1,6 +1,7 @@
 package module;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ public class Requester {
 	private ApiClient apiClient;
 	private Logger logger = Logger.getLogger(getClass());
 	private ServiciosdeBus serviciosdeBus;
+    public boolean debeParar = false;
 
 	public Requester(ApiClient apiClient) throws IOException {
 
@@ -31,22 +33,21 @@ public class Requester {
 		serviciosdeBus = new ServiciosdeBus(apiClient);
 	}
 
-	public void getOrders() throws ApiException {
+	public void getOrders() /*throws ApiException, ReiniciarException*/ {
 
 		final EventsClient eventClient = apiClient.getEventClient();
 		final Actions action = new Actions(apiClient);
 
 		try {
 			logger.info("waiting for new information ...");
-
 			apiClient.getOrdersClient().getAll(new OnReceivedOrder() {
 
 				@Override
 
 				public boolean call(Order order) {
-
+					String msg = null;
 					try {
-
+						
 						logger.info("***********************************************************");
 						logger.info("                    Order received");
 						logger.info(String.format("ID: %d state: %s local: %s restaurantID=%d",
@@ -87,8 +88,18 @@ public class Requester {
 
 						}
 						// action.getReject(order);
-					} catch (Exception ex) {
-						logger.error("call", ex);
+					} catch (ApiException ex) {
+						String causa = ex.getMessage();
+						if (causa.indexOf("Malformed Token") >= 0) {
+							msg = String.format("Se atrapo un Malformed Token a las %s y se genera un ReiniciarException", 
+									new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date()));
+							logger.info(msg);
+							//throw new ReiniciarException(msg);
+							System.exit(100);
+						} else
+							logger.error("call", ex);
+					} catch (Exception ex2) {
+						logger.error("call", ex2);
 					}
 					return true;
 				}
@@ -99,8 +110,14 @@ public class Requester {
 					logger.error("OnError", ex);
 				};
 			});
+		
 		} catch (Exception ex) {
 			logger.error("Error en getOrders", ex);
+			/*
+			String msg = ex.getMessage();
+			if (msg.indexOf("ReiniciarException") >= 0)
+				throw new ReiniciarException(msg);
+				*/
 		}
 
 	}
@@ -156,4 +173,9 @@ public class Requester {
 		}
 		return 0l;
 	}
+
+	public boolean isDebeParar() {
+		return debeParar;
+	}
+
 }

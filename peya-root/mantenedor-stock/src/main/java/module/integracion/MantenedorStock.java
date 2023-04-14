@@ -5,13 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.apache.log4j.Logger;
 
 import com.pedidosya.reception.sdk.ApiClient;
+import com.pedidosya.reception.sdk.clients.SectionClient;
+import com.pedidosya.reception.sdk.exceptions.ApiException;
 
 import cl.ahumada.esb.dto.pedidosYa.consultaStock.json.Items;
 
@@ -26,7 +30,7 @@ public class MantenedorStock extends Thread {
 	int countPasadas = 0;
 	boolean conDump = true;
 	private Long periodo;
-
+	
 	public MantenedorStock(ApiClient apiClient) throws IOException {
 		this.apiClient = apiClient;
 		serviciosdeBus = new ServiciosdeBus(apiClient);

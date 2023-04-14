@@ -1,3 +1,4 @@
+module/ReiniciarException.class
 module/Requester$1.class
 module/Token.class
 module/Requester$2.class
@@ -10,5 +11,5 @@ module/Actions.class
 module/PeyaController.class
 module/integracion/RestApiClient.class
 module/integracion/ServiciosdeBus.class
-module/PartnerEvents$1.class
 module/Requester.class
+module/PartnerEvents$1.class

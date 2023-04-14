@@ -1,0 +1,6 @@
+[DEBUG 2023-04-14 12:14:42,531] {main} [module.PeyaStock-73] - initFromProperties: busca properties en /home/fernando/CodeReady/FASA/PEYA/SinMonitorLogisticoSDK8/peya-root/mantenedor-stock/integracion.properties
+[DEBUG 2023-04-14 12:14:42,534] {main} [module.PeyaStock-78] - fileProperties= /home/fernando/CodeReady/FASA/PEYA/SinMonitorLogisticoSDK8/peya-root/mantenedor-stock/src/main/integracion.properties existe false
+[INFO  2023-04-14 12:14:42,535] {main} [module.PeyaStock-51] - [ 14/04/23-12:14:42.534 ] PeyaStock - 1.0.11 (20-03-2023)  is running a null - Propiedades definidas en: integracion.properties
+{}
+
+[INFO  2023-04-14 12:14:42,536] {main} [module.Token-21] - Token_constructor: client_id: null client_secret: null

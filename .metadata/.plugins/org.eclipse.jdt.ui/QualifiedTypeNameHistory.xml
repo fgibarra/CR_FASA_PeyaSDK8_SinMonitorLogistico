@@ -5,7 +5,6 @@
     <fullyQualifiedTypeName name="com.pedidosya.reception.sdk.models.Product"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
     <fullyQualifiedTypeName name="org.apache.log4j.PropertyConfigurator"/>
-    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="module.integracion.bd.PoolManager"/>
     <fullyQualifiedTypeName name="module.integracion.threads.ProcesaMantencion"/>
@@ -37,4 +36,6 @@
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
     <fullyQualifiedTypeName name="module.PeyaStock"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="com.pedidosya.reception.sdk.models.Section"/>
 </qualifiedTypeNameHistroy>

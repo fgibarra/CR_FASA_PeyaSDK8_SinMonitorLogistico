@@ -6,6 +6,7 @@
     <version>1.8</version>
   </parent>
   <artifactId>mantenedor-stock</artifactId>
+  <version>2.0.0-sdk8</version>
   <name>Peya Stock</name>
   <description>Mantiene Stock</description>
 	<dependencies>

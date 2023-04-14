@@ -23,7 +23,7 @@ import module.integracion.MantenedorStock;
  */
 public class PeyaStock {
 
-    private static final String version = "1.0.11 (20-03-2023)";
+    private static final String version = "2.0.0 (14-04-2023)";
     protected static String log4jConfigFile = "pedidosYa_log4j.properties";
     private static String properyFileName = "integracion.properties";
 	private static Properties integracionProps = null;
